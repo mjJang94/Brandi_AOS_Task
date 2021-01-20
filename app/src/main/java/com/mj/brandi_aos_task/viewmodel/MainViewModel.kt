@@ -46,6 +46,8 @@ class MainViewModel(val retrofitConnection: RetrofitConnection) : ViewModel() {
     var networkConnectionError: (() -> Unit)? = null
 
 
+
+
     //이미지 검색 메소드
     fun getSearchResult() {
 
