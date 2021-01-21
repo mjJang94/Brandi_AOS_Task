@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mj.brandi_aos_task">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".module.MainApplication"
         android:allowBackup="true"
@@ -10,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brandi_AOS_Task">
-        <activity android:name="com.mj.brandi_aos_task.ui.activity.MainActivity">
+        <activity
+            android:name="com.mj.brandi_aos_task.ui.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

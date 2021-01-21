@@ -21,50 +21,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/back_r16_f0f0f0"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/btn_input_search_keyword"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="12dp"
-                    android:src="@drawable/icon_search_search_24_g_7" />
-
-                <EditText
+                <LinearLayout
+                    android:id="@+id/btn_input_search_keyword"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:background="none"
-                    android:hint="검색어를 입력해주세요"
-                    android:text="@{mainModel.query}"
-                    android:maxLines="1"/>
+                    android:background="@drawable/back_r16_f0f0f0"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/icon_search_search_24_g_7"
-                    android:visibility="@{mainModel.query.empty ? View.GONE : View.VISIBLE}"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:src="@drawable/icon_search_search_24_g_7" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:addTextChangedListener="@{mainModel.watcher}"
+                        android:background="@null"
+                        android:hint="검색어를 입력해주세요"
+                        android:maxLines="1"
+                        android:text="@={mainModel.query}" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="12dp"
+                        android:onClick="@{()->mainModel.removeBtnClick()}"
+                        android:src="@drawable/remove_18_g_7"
+                        android:visibility="@{mainModel.query.length() == 0 ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:id="@+id/txt_accuracy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainModel.onclick}"
+                    android:text="정확도" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="·"/>
+
+                <TextView
+                    android:id="@+id/txt_recency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{mainModel.onclick}"
+                    android:text="최신" />
+
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:scrollbars="none"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/common_no_result_of_search"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="@{mainModel.resultDataExist == true ? View.GONE : View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:visibility="@{mainModel.resultDataExist == true ? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>
