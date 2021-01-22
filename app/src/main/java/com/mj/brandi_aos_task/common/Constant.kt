@@ -12,10 +12,16 @@ class Constant{
         const val RECENCY = "recency"
         //페이지당 문서 수 조건 반영
         const val STATIC_SIZE = "30"
-
         //Kakao Host
         const val KAKAO_SEARCH_HOST = "https://dapi.kakao.com/"
         //Kakao auth value
         const val KAKAO_AUTH_VALUE = "KakaoAK ab42e5264c116c1eea7ace8f54493b69"
+
+        //원본 이미지 url
+        const val IMAGE_URL = "IMAGE_URL"
+        //이미지 출처
+        const val DISPLAY_SITENAME = "DISPLAY_SITENAME"
+        //문서 작성시간
+        const val DATETIME = "DATETIME"
     }
 }

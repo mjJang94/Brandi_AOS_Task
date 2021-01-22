@@ -39,7 +39,7 @@ open class Util {
         negetiBtnText: String,
         clickListener: DialogClickListener
     ) {
-        val dialog = AlertDialog.Builder(activity, android.R.style.Theme_DeviceDefault_Light_Dialog)
+        val dialog = AlertDialog.Builder(activity)
         dialog
             .setTitle(title)
             .setMessage(msg)

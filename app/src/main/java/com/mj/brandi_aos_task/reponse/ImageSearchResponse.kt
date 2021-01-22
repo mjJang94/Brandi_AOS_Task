@@ -2,6 +2,9 @@ package com.mj.brandi_aos_task.reponse
 
 class ImageSearchResponse {
 
+    val errorType: String ?= null
+    val message: String ?= null
+
     val documents : ArrayList<Info> ?= null
     val meta: NoResultInfo ?= null
 

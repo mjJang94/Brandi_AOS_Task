@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brandi_AOS_Task">
+        <activity android:name=".ui.activity.FullScreenActivity"></activity>
         <activity
-            android:name="com.mj.brandi_aos_task.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface RetrofitConnection {
     @Headers("Authorization:" + Constant.KAKAO_AUTH_VALUE)
     @GET("v2/search/image")
-    fun getCovidInfo(
+    fun startImageSearch(
         @Query("query") query: String,
         @Query("sort") sort: String,
         @Query("page") page: String,

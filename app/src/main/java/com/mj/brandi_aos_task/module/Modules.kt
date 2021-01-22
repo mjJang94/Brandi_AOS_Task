@@ -7,8 +7,9 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-fun retrofitApiConnectionModule() = module{
 
+
+fun retrofitApiConnectionModule() = module{
 
     single {
         Retrofit.Builder()
@@ -16,10 +17,10 @@ fun retrofitApiConnectionModule() = module{
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
             .create(RetrofitConnection::class.java)
-
     }
-
-
 }
+
+
+
 
 
