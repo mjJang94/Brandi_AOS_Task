@@ -119,18 +119,14 @@ class MainViewModel : ViewModel(), KoinComponent {
                         }
                     } else {
                         responseError?.let { it(response)}
-
-
-
-
                     }
                     isLoading.postValue(false)
                 }
 
                 override fun onFailure(call: Call<ImageSearchResponse>, t: Throwable) {
-//                    networkConnectionError?.let {
-//                        it()
-//                    }
+                    networkConnectionError?.let {
+                        it()
+                    }
                     isLoading.postValue(false)
                 }
             })

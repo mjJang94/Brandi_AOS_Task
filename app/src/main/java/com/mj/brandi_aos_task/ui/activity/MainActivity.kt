@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         //MainviewModel 생성
         viewModel = ViewModelProvider(
-            this,
-            MainViewModel.MainViewModelFactory()
+                this,
+                MainViewModel.MainViewModelFactory()
         ).get(MainViewModel::class.java)
         //binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -62,14 +62,19 @@ class MainActivity : AppCompatActivity() {
         //view model 의 query 값이 변경되면 검색 결과를 가져온다.
         viewModel.query.observe(this, Observer<String> { query ->
 
+            //빈 데이터 삽
             viewModel.searchImageData.postValue(ImageSearchResponse())
+            //페이지수 초기회
             viewModel.page.value = Constant.DEFAULT_SORT
 
             query.let {
                 viewModel.showNoDataView.postValue(false)
 
+                //api 중복 호출 방지 조건
                 if (viewModel.isLoading.value == false) {
-                    viewModel.getSearchResult(true)
+                    if (!it.isNullOrEmpty()) {
+                        viewModel.getSearchResult(true)
+                    }
                 }
             }
         })
@@ -90,40 +95,56 @@ class MainActivity : AppCompatActivity() {
 
 
                 val lastPosition =
-                    (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() + 1
-                val itemTotalCount = recyclerView.adapter?.itemCount
+                        (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() + 1
+                val itemTotalCount = recyclerView.adapter?.itemCount!!
 
 
-                if (lastPosition == itemTotalCount && viewModel.isLoading.value == false) {
-                    viewModel.page.value = (viewModel.page.value!!.toInt() + 1).toString()
-                    viewModel.getSearchResult(false)
+                if (lastPosition > 0 && itemTotalCount > 0) {
+                    if (lastPosition == itemTotalCount && viewModel.isLoading.value == false) {
+                        viewModel.page.value = (viewModel.page.value!!.toInt() + 1).toString()
+                        viewModel.getSearchResult(false)
+                    }
                 }
 
                 super.onScrolled(recyclerView, dx, dy)
             }
         })
 
-        //검색 오류시
+        //api 응답이 정상이 아닐때
         viewModel.responseError = { response ->
 
             try {
                 val jObjError = JSONObject(response.errorBody()!!.string())
-                Toast.makeText(this, jObjError.getJSONObject("errorType").getString("message"), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, jObjError.getString("errorType") + jObjError.getString("message"), Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(this,  e.message.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, e.message.toString(), Toast.LENGTH_SHORT).show()
             }
+        }
 
-
+        //네트워크 에러일때
+        viewModel.networkConnectionError = {
+            showErrorDialog(
+                    getString(R.string.error_network_connection_title),
+                    getString(R.string.error_network_connection_msg),
+                    getString(R.string.common_confirm),
+                    Constant.EMPTY,
+            object : DialogClickListener{
+                override fun positiveClick(dialog: DialogInterface) {
+                    dialog.dismiss()
+                }
+                override fun negetiveClick(dialog: DialogInterface) {
+                }
+            })
         }
     }
 
 
     private fun showErrorDialog(
-        title: String,
-        msg: String,
-        positiveBtnText: String,
-        negetiveBtnText: String,
-        listener: DialogClickListener
+            title: String,
+            msg: String,
+            positiveBtnText: String,
+            negetiveBtnText: String,
+            listener: DialogClickListener
     ) {
         Util().showErrorDialog(this, title, msg, positiveBtnText, negetiveBtnText, listener)
     }
