@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 
 class ListViewModel : ViewModel() {
 
-    var rowClick: (() -> Unit)? = null
-
 
     class ListViewModelFactory: ViewModelProvider.Factory {
 
