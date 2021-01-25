@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import com.bumptech.glide.Glide
 import com.mj.brandi_aos_task.R
 import com.mj.brandi_aos_task.common.Constant
 import com.mj.brandi_aos_task.databinding.ActivityMainBinding
@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
     private fun initData() {
         //MainviewModel 생성
         viewModel = ViewModelProvider(
-                this,
-                MainViewModel.MainViewModelFactory()
+            this,
+            MainViewModel.MainViewModelFactory()
         ).get(MainViewModel::class.java)
         //binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     private fun initLayout() {
 
         //리스트 어댑터 연결
-        val adapter = ListViewAdapter(this, ImageSearchResponse())
+        val adapter = ListViewAdapter(this, ImageSearchResponse(), Glide.with(this))
         binding.rcvList.adapter = adapter
         binding.rcvList.layoutManager = GridLayoutManager(this, 3)
 
@@ -63,12 +63,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.query.observe(this, Observer<String> { query ->
 
             //빈 데이터 삽
-            viewModel.searchImageData.postValue(ImageSearchResponse())
+            viewModel.searchImageData.value = ImageSearchResponse()
             //페이지수 초기회
             viewModel.page.value = Constant.DEFAULT_SORT
 
             query.let {
-                viewModel.showNoDataView.postValue(false)
+                viewModel.showNoDataView.value = false
 
                 //api 중복 호출 방지 조건
                 if (viewModel.isLoading.value == false) {
@@ -95,14 +95,26 @@ class MainActivity : AppCompatActivity() {
 
 
                 val lastPosition =
-                        (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() + 1
+                    (recyclerView.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition() + 1
                 val itemTotalCount = recyclerView.adapter?.itemCount!!
 
 
                 if (lastPosition > 0 && itemTotalCount > 0) {
                     if (lastPosition == itemTotalCount && viewModel.isLoading.value == false) {
-                        viewModel.page.value = (viewModel.page.value!!.toInt() + 1).toString()
-                        viewModel.getSearchResult(false)
+                        //결과 페이지 번호, 1~50 사이의 값, 기본 값 1
+                        viewModel.page.value =
+                            if (viewModel.page.value!!.toInt() < 51) (viewModel.page.value!!.toInt() + 1).toString() else viewModel.page.value
+
+                        //50까지는 조회, 그 이상이면 토스트 출력
+                        if (viewModel.page.value!!.toInt() < 51) {
+                            viewModel.getSearchResult(false)
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.common_last_page),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
 
@@ -115,36 +127,41 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 val jObjError = JSONObject(response.errorBody()!!.string())
-                Toast.makeText(this, jObjError.getString("errorType") + jObjError.getString("message"), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    jObjError.getString(Constant.ERRORTYPE) + jObjError.getString(Constant.ERRORMESSAGE),
+                    Toast.LENGTH_SHORT
+                ).show()
             } catch (e: Exception) {
-                Toast.makeText(this, e.message.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, e.message.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         //네트워크 에러일때
         viewModel.networkConnectionError = {
             showErrorDialog(
-                    getString(R.string.error_network_connection_title),
-                    getString(R.string.error_network_connection_msg),
-                    getString(R.string.common_confirm),
-                    Constant.EMPTY,
-            object : DialogClickListener{
-                override fun positiveClick(dialog: DialogInterface) {
-                    dialog.dismiss()
-                }
-                override fun negetiveClick(dialog: DialogInterface) {
-                }
-            })
+                getString(R.string.error_network_connection_title),
+                getString(R.string.error_network_connection_msg),
+                getString(R.string.common_confirm),
+                Constant.EMPTY,
+                object : DialogClickListener {
+                    override fun positiveClick(dialog: DialogInterface) {
+                        dialog.dismiss()
+                    }
+
+                    override fun negetiveClick(dialog: DialogInterface) {
+                    }
+                })
         }
     }
 
-
+    //에러 다이얼로그
     private fun showErrorDialog(
-            title: String,
-            msg: String,
-            positiveBtnText: String,
-            negetiveBtnText: String,
-            listener: DialogClickListener
+        title: String,
+        msg: String,
+        positiveBtnText: String,
+        negetiveBtnText: String,
+        listener: DialogClickListener
     ) {
         Util().showErrorDialog(this, title, msg, positiveBtnText, negetiveBtnText, listener)
     }

@@ -23,5 +23,9 @@ class Constant{
         const val DISPLAY_SITENAME = "DISPLAY_SITENAME"
         //문서 작성시간
         const val DATETIME = "DATETIME"
+
+        //error body
+        const val ERRORTYPE = "errorType"
+        const val ERRORMESSAGE = "message"
     }
 }

@@ -27,9 +27,8 @@ class FullScreenActivity : AppCompatActivity() {
     //데이터 세팅
     private fun initData() {
 
-        viewModel = ViewModelProvider(this, FullScreenViewModel.FullScreenVieModelFactory()).get(
-            FullScreenViewModel::class.java
-        )
+        viewModel = ViewModelProvider(this, FullScreenViewModel.FullScreenVieModelFactory())
+            .get(FullScreenViewModel::class.java)
         //binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_screen)
         //ViewMoel 등록
@@ -51,7 +50,13 @@ class FullScreenActivity : AppCompatActivity() {
         Glide.with(this)
             .load(viewModel.imageURL.value)
             .thumbnail(0.1f)
+            .override(500, 500)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .placeholder(R.drawable.loading_image)
+            .error(R.drawable.can_not_load)
             .into(binding.ivFullScreen)
+
 
     }
 }

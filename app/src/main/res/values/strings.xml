@@ -6,4 +6,5 @@
     <string name="error_network_connection_msg">네트워크 에러입니다.\n네트워크 상태를 확인해주세요!</string>
     <string name="common_confirm">확인</string>
     <string name="common_no_result_of_search">검색 결과가 없습니다</string>
+    <string name="common_last_page">마지막 페이지 입니다.</string>
 </resources>

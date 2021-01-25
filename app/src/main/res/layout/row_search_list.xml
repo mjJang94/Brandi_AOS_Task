@@ -14,7 +14,8 @@
     <ImageView
         android:id="@+id/iv_row"
         android:layout_width="150dp"
-        android:layout_height="150dp"/>
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"/>
 
 </LinearLayout>
 

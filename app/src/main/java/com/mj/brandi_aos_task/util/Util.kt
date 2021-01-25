@@ -31,7 +31,7 @@ open class Util {
     /**
      * 에러 다이얼로그
      */
-    fun showErrorDialog(
+    open fun showErrorDialog(
         activity: Activity,
         title: String,
         msg: String,
