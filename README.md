@@ -1,4 +1,4 @@
-# Brandi AOS 채용 과제
+# Brandi AOS 개발자 채용 과제
 
 ## 개발환경
 - Android Studio 4.1.1
