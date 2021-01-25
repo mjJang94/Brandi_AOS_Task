@@ -5,10 +5,12 @@
 - Kotlin 1.3.72
 - git
 
-## 사용 라이브러리
-- koin
-- retrofit2
-- gson
-- coroutine
-- live data
-- glide
+## 사용 기술
+- Koin
+- Retrofit2
+- Gson
+- Coroutine
+- Live data
+- Glide
+- DataBinding
+- MVVM Pattern
