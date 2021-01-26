@@ -1,4 +1,4 @@
-# Brandi AOS 개발자 채용 과제
+# 다음 이미지 검색 api 연동 스터디
 
 ## 개발환경
 - Android Studio 4.1.1
