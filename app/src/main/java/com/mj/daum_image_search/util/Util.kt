@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.util
+package com.mj.daum_image_search.util
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.mj.brandi_aos_task.impl.DialogClickListener
+import com.mj.daum_image_search.impl.DialogClickListener
 
 open class Util {
 

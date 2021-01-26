@@ -1,9 +1,8 @@
-package com.mj.brandi_aos_task.viewmodel
+package com.mj.daum_image_search.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.request.RequestListener
 
 class FullScreenViewModel: ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.impl
+package com.mj.daum_image_search.impl
 
 import android.content.DialogInterface
 

@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.reponse
+package com.mj.daum_image_search.reponse
 
 class ImageSearchResponse {
 

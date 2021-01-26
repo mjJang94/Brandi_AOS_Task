@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.ui.adapter
+package com.mj.daum_image_search.ui.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
-import com.mj.brandi_aos_task.common.Constant
-import com.mj.brandi_aos_task.databinding.RowSearchListBinding
-import com.mj.brandi_aos_task.reponse.ImageSearchResponse
-import com.mj.brandi_aos_task.reponse.ImageSearchResponse.Info
-import com.mj.brandi_aos_task.ui.activity.FullScreenActivity
+import com.mj.daum_image_search.common.Constant
+import com.mj.daum_image_search.databinding.RowSearchListBinding
+import com.mj.daum_image_search.reponse.ImageSearchResponse
+import com.mj.daum_image_search.reponse.ImageSearchResponse.Info
+import com.mj.daum_image_search.ui.activity.FullScreenActivity
 
 class ListViewAdapter(val context: Context, var data: ImageSearchResponse,var glide: RequestManager) :
     RecyclerView.Adapter<ListViewAdapter.Holder>() {

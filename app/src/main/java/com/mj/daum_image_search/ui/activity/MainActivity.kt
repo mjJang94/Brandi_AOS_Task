@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.ui.activity
+package com.mj.daum_image_search.ui.activity
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mj.brandi_aos_task.R
-import com.mj.brandi_aos_task.common.Constant
-import com.mj.brandi_aos_task.databinding.ActivityMainBinding
-import com.mj.brandi_aos_task.impl.DialogClickListener
-import com.mj.brandi_aos_task.reponse.ImageSearchResponse
-import com.mj.brandi_aos_task.ui.adapter.ListViewAdapter
-import com.mj.brandi_aos_task.util.Util
-import com.mj.brandi_aos_task.viewmodel.MainViewModel
+import com.mj.daum_image_search.R
+import com.mj.daum_image_search.common.Constant
+import com.mj.daum_image_search.databinding.ActivityMainBinding
+import com.mj.daum_image_search.impl.DialogClickListener
+import com.mj.daum_image_search.reponse.ImageSearchResponse
+import com.mj.daum_image_search.ui.adapter.ListViewAdapter
+import com.mj.daum_image_search.util.Util
+import com.mj.daum_image_search.viewmodel.MainViewModel
 import org.json.JSONObject
 
 

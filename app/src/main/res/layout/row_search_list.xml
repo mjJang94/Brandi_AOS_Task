@@ -3,7 +3,7 @@
 <layout>
 
     <data>
-        <variable name="listModel" type="com.mj.brandi_aos_task.viewmodel.ListViewModel"/>
+        <variable name="listModel" type="com.mj.daum_image_search.viewmodel.ListViewModel"/>
     </data>
 
 <LinearLayout

@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.ui.activity
+package com.mj.daum_image_search.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.mj.brandi_aos_task.R
-import com.mj.brandi_aos_task.common.Constant
-import com.mj.brandi_aos_task.databinding.ActivityFullScreenBinding
-import com.mj.brandi_aos_task.viewmodel.FullScreenViewModel
+import com.mj.daum_image_search.R
+import com.mj.daum_image_search.common.Constant
+import com.mj.daum_image_search.databinding.ActivityFullScreenBinding
+import com.mj.daum_image_search.viewmodel.FullScreenViewModel
 
 class FullScreenActivity : AppCompatActivity() {
 

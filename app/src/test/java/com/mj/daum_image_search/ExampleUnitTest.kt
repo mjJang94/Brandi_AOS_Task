@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task
+package com.mj.daum_image_search
 
 import org.junit.Test
 

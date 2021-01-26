@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.viewmodel
+package com.mj.daum_image_search.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -10,7 +10,7 @@
 
         <variable
             name="mainModel"
-            type="com.mj.brandi_aos_task.viewmodel.MainViewModel" />
+            type="com.mj.daum_image_search.viewmodel.MainViewModel" />
     </data>
 
     <LinearLayout

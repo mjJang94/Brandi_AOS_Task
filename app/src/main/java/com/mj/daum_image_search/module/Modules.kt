@@ -1,8 +1,8 @@
-package com.mj.brandi_aos_task.module
+package com.mj.daum_image_search.module
 
 import com.google.gson.GsonBuilder
-import com.mj.brandi_aos_task.api.RetrofitConnection
-import com.mj.brandi_aos_task.common.Constant
+import com.mj.daum_image_search.api.RetrofitConnection
+import com.mj.daum_image_search.common.Constant
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

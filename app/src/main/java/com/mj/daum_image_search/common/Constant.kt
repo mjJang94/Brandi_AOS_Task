@@ -1,4 +1,4 @@
-package com.mj.brandi_aos_task.common
+package com.mj.daum_image_search.common
 
 class Constant{
     companion object {

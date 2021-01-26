@@ -1,12 +1,12 @@
-package com.mj.brandi_aos_task.viewmodel
+package com.mj.daum_image_search.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.mj.brandi_aos_task.api.RetrofitConnection
-import com.mj.brandi_aos_task.common.Constant
-import com.mj.brandi_aos_task.reponse.ImageSearchResponse
+import com.mj.daum_image_search.api.RetrofitConnection
+import com.mj.daum_image_search.common.Constant
+import com.mj.daum_image_search.reponse.ImageSearchResponse
 import kotlinx.coroutines.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

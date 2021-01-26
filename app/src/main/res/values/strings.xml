@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Brandi_AOS_Task</string>
+    <string name="app_name">daum_image_search</string>
     <string name="error_response_title">응답 에러</string>
     <string name="error_response_msg">정상적인 응답값이 아닙니다.\n잠시후 다시 시도해주세요!</string>
     <string name="error_network_connection_title">네트워크 에러</string>
