@@ -43,9 +43,7 @@ class ListViewAdapter(val context: Context, var data: ImageSearchResponse,var gl
         fun bind(data: Info, context: Context) {
 
             glide
-                .load(data.thumbnail_url)
-                .override(150, 150)
-                .centerCrop()
+                .load(data.image_url)
                 .thumbnail(0.1f)
                 .into(binding.ivRow)
 
